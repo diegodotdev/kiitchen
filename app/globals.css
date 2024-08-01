@@ -1,3 +1,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  body {
+    @apply text-sm bg-gray-200 text-gray-950;
+  }
+
+  button {
+    @apply rounded-lg bg-gray-950 text-gray-200 px-4 py-2;
+  }
+}
