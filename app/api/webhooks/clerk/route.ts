@@ -2,6 +2,7 @@ import { Webhook } from "svix";
 import { headers } from "next/headers";
 import { WebhookEvent } from "@clerk/nextjs/server";
 import { NextResponse } from "next/server";
+import prisma from "@/lib/prisma";
 
 export async function POST(req: Request) {
   // You can find this in the Clerk Dashboard -> Webhooks -> choose the endpoint
@@ -52,8 +53,11 @@ export async function POST(req: Request) {
   // Do something with the payload
   // For this guide, you simply log the payload to the console
   if (evt.type === "user.created") {
-    const { id } = evt.data;
-
-    return NextResponse.json(id, { status: 200 });
+    await prisma.test.create({
+      data: {
+        username: evt.data.username as string,
+      },
+    });
+    return NextResponse.json({ message: "username added" }, { status: 200 });
   }
 }
