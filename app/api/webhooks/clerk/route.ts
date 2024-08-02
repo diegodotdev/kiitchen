@@ -53,11 +53,25 @@ export async function POST(req: Request) {
   // Do something with the payload
   // For this guide, you simply log the payload to the console
   if (evt.type === "user.created") {
-    await prisma.test.create({
+    const { id, username, first_name, last_name, image_url, email_addresses } =
+      evt.data;
+    await prisma.user.create({
       data: {
-        username: evt.data.username as string,
+        clerkId: id as string,
+        firstname: first_name as string,
+        lastname: last_name as string,
+        photo: image_url as string,
+        username: username as string,
+        email: email_addresses[0].email_address as string,
       },
     });
-    return NextResponse.json({ message: "username added" }, { status: 200 });
+    return NextResponse.json("", { status: 200 });
+  } else if (evt.type === "user.deleted") {
+    await prisma.user.delete({
+      where: {
+        id: evt.data.id,
+      },
+    });
+    return NextResponse.json("", { status: 200 });
   }
 }
