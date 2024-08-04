@@ -59,7 +59,7 @@ export async function POST(req: Request) {
       data: {
         clerkId: id as string,
         firstname: first_name as string,
-        lastname: last_name as string,
+        lastname: last_name ? last_name : "",
         photo: image_url as string,
         username: username as string,
         email: email_addresses[0].email_address as string,
