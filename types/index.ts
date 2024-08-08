@@ -6,7 +6,7 @@ export interface User {
   lastname?: string;
   photo: string;
   clerkId: string;
-  recipes?: Recipe[];
+  recipes: Recipe[];
 }
 
 export interface RecipePayload {

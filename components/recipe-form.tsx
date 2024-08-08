@@ -107,6 +107,7 @@ export default function RecipeForm() {
     const ingList = values.ingredients.map((i) => i.value);
     const insList = values.instructions.map((i) => i.value);
 
+    if (!user) return null;
     try {
       await createRecipe({
         ...values,
