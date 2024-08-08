@@ -42,7 +42,6 @@ const formSchema = z.object({
 
 export default function RecipeForm() {
   const { user } = useUser();
-  if (!user) return <p>Loading...</p>;
   const [loading, setLoading] = useState(false);
   const [isActive, setIsActive] = useState<"ing" | "ins">("ing");
   const [imageAssets, setImageAssets] = useState<string | null>(null);
@@ -123,6 +122,7 @@ export default function RecipeForm() {
       toast.error("Something went wrong, try again");
     }
   };
+  if (!user) return <p>Loading...</p>;
   return (
     <Form {...form}>
       <form

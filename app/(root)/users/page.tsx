@@ -11,7 +11,7 @@ export default async function Users() {
     <MaxWidthWrapper>
       <div className="py-10 grid grid-cols-5 gap-4 place-items-center">
         {data.map((i) => (
-          <Link href={`/users/${i.clerkId}`} className="w-full">
+          <Link href={`/users/${i.clerkId}`} className="w-full" key={i.clerkId}>
             <div className="w-full flex flex-col justify-center items-center gap-4">
               <img
                 src={i.photo}
