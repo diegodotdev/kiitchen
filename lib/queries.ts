@@ -32,7 +32,11 @@ export async function getUniqueRecipe(id: string): Promise<Recipe | null> {
 
 export async function getAllUsers(): Promise<User[] | null> {
   try {
-    const data = await prisma.user.findMany();
+    const data = await prisma.user.findMany({
+      include: {
+        recipes: true,
+      },
+    });
     return data;
   } catch (err) {
     console.log(err);
